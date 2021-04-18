@@ -1,0 +1,20 @@
+.sidebar-content {
+  margin: 10px;
+}
+
+.about-me {
+  margin-top: 20px;
+}
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.navigation-button {
+  flex: 0 0 100%;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

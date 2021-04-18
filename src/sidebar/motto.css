@@ -1,0 +1,19 @@
+.motto {
+  margin: 40px 20px 5px 20px;
+  min-height: 10vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.motto div {
+  font-style: italic;
+  order: 1;
+  text-align: center;
+  flex: 0 0 100%;
+}
+
+.motto span {
+  font-weight: bold;
+  order: 2;
+}
