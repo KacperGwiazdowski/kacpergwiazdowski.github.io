@@ -36,7 +36,7 @@ export const Motto = () => {
       } else {
         setMottoId(mottoId + 1);
       }
-    }, 5000);
+    }, 6000);
     return () => clearInterval(interval);
   }, [mottoId]);
 
@@ -50,7 +50,7 @@ export const Motto = () => {
 
 const MottoDisplayComponent = ({ quote, author }: Quote) => {
   return (
-    <div key={quote} className="motto roll-out">
+    <div key={quote} className="motto appear vanish">
       <div>“{quote}”</div>
       <span>- {author}</span>
     </div>

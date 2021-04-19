@@ -1,0 +1,13 @@
+@keyframes blink-caret {
+  from,
+  to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.caret {
+  animation: blink-caret 1s step-end infinite;
+}
