@@ -1,19 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./greeting.css";
 
-export const Greeting = () => {
-  const [title, setTitle] = useState(Array.from(".NET Fullstack Developer."));
+const titles = [".NET Fullstack Developer.", "Architecture enthusiast"];
 
-  const titleComponents = title.filter((x) => <TitleLetter letter={x} />);
+export const Greeting = () => {
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [currentLetterIndex, setCurrentLetterIndex] = useState(0);
+  const [isAdding, setIsAdding] = useState(true);
+  const [waitCount, setWaitCount] = useState(0);
+
+  const titleComponents = Array.from(
+    titles[titleIndex].slice(0, currentLetterIndex)
+  ).filter((x) => <TitleLetter letter={x} />);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (waitCount < 10) {
+        setWaitCount(waitCount + 1);
+        return;
+      }
+      if (titles[titleIndex].length === currentLetterIndex + 1) {
+        setWaitCount(0);
+        setIsAdding(false);
+      }
+
+      if (currentLetterIndex === 0 && !isAdding) {
+        if (titleIndex + 1 === titles.length) {
+          setTitleIndex(0);
+        } else {
+          setTitleIndex(titleIndex + 1);
+        }
+        setIsAdding(true);
+      }
+      if (isAdding) {
+        setCurrentLetterIndex(currentLetterIndex + 1);
+      } else if (!isAdding && currentLetterIndex !== 0) {
+        setCurrentLetterIndex(currentLetterIndex - 1);
+      }
+    }, 100);
+    return () => clearInterval(interval);
+  }, [currentLetterIndex, isAdding, titleIndex, waitCount]);
 
   return (
     <div className="about-me ">
       Hello, I'm Kacper - {titleComponents}
       <span className="caret">|</span>
-      <button onClick={() => setTitle(title.slice(0, title.length - 1))}>
-        aa
-      </button>
     </div>
   );
 };
